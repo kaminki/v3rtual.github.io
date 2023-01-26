@@ -57,10 +57,8 @@ drone.on('error', error => {
 });
 
 function getRandomName() {
- let person = prompt("Please enter your name", "Anonymous");
-  if (person != null) {
-   return(person);
-  }
+  var usernameinthechat = prompt("Please enter your username", "Anonymous")
+  return(usernameinthechat);
 }
  
 
