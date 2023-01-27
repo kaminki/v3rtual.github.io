@@ -60,7 +60,7 @@ function getRandomName() {
   if (document.cookie == "") {
     while (document.cookie == "") {
       var usernameinthechat = prompt("Please enter your username (Choose Wisely. This stays forever)")
-      if (document.cookie !== "") { break }
+      if (usernameinthechat !== "") { break }
     }
     var cookieusername = "name=" + usernameinthechat
     document.cookie = cookieusername;
