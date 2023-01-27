@@ -58,7 +58,10 @@ drone.on('error', error => {
 
 function getRandomName() {
   if (document.cookie == "") {
-    var usernameinthechat = prompt("Please enter your username (Choose Wisely. This stays forever)")
+    while (document.cookie == "") {
+      var usernameinthechat = prompt("Please enter your username (Choose Wisely. This stays forever)")
+      if (document.cookie !== "") { break }
+    }
     var cookieusername = "name=" + usernameinthechat
     document.cookie = cookieusername;
   } else { usernameinthechat = document.cookie.slice(5) }
