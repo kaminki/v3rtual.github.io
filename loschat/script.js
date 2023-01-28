@@ -69,8 +69,9 @@ function getRandomName() {
  
 
 function getRandomColor() {
-  return '#FFFFFF';
+  return '#' + 0xFFFFFF.toString(16);
 }
+
 
 //------------- DOM STUFF
 
