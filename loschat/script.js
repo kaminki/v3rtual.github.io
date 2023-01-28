@@ -64,7 +64,7 @@ function getRandomName() {
     var cookieusername = "name=" + usernameinthechat;
     document.cookie = cookieusername;
   } else { usernameinthechat = document.cookie.slice(5) }
-  return(usernameinthechat + " -");
+  return(usernameinthechat);
 }
  
 
