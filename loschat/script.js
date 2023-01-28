@@ -58,10 +58,10 @@ drone.on('error', error => {
 
 function getRandomName() {
   if (document.cookie == "") {
-    while (document.cookie == "") {
-      var usernameinthechat = prompt("Please enter your username (Choose Wisely. This stays forever)")
-    }
-    var cookieusername = "name=" + usernameinthechat
+    do {
+      var usernameinthechat = prompt("Please enter your username (Choose Wisely. This stays forever)");
+    } while (usernameinthechat == "");
+    var cookieusername = "name=" + usernameinthechat;
     document.cookie = cookieusername;
   } else { usernameinthechat = document.cookie.slice(5) }
   return(usernameinthechat);
