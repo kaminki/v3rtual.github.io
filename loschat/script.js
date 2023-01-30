@@ -63,7 +63,11 @@ function getRandomName() {
     } while (usernameinthechat == "");
     var cookieusername = "name=" + usernameinthechat;
     document.cookie = cookieusername;
-  } else { usernameinthechat = document.cookie.slice(5) }
+  } else { 
+    var input = document.cookie.slice(5)
+    var cookies = input.split(';');
+    usernameinthechat = cookies[0];
+  }
   return(usernameinthechat);
 }
  
