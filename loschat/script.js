@@ -6,7 +6,7 @@ const drone = new ScaleDrone(CLIENT_ID, {
     color: getRandomColor(),
   },
 });
-var usernameinthechatvar = getRandomName();
+
 let members = [];
 
 drone.on('open', error => {
@@ -132,7 +132,7 @@ function createMessageElement(text, member) {
 function addMessageToListDOM(text, member) {
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
-  el.appendChild(createMessageElement(text));
+  el.appendChild(createMessageElement(text, member));
   if (wasTop) {
     el.scrollTop = el.scrollHeight - el.clientHeight;
   }
