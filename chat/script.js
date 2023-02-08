@@ -6,7 +6,8 @@ const drone = new ScaleDrone(CLIENT_ID, {
     color: getRandomColor(),
   },
 });
-
+usernameinthechatvar = getRandomName();
+newmessageabouttobesent = ""
 let members = [];
 
 drone.on('open', error => {
