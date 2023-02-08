@@ -96,16 +96,17 @@ function sendMessage() {
     return;
   }
   DOM.input.value = '';
+  newmessageabouttobesent = usernameinthechat + ":   " + value,
   drone.publish({
     room: 'observable-room',
-    message: value,
+    message: usernameinthechat + ":   " + value,
   });
 }
+
 
 function createMemberElement(member) {
   const { name, color } = member.clientData;
   const el = document.createElement('div');
-  el.appendChild(document.createTextNode(name));
   el.className = 'member';
   el.style.color = color;
   return el;
