@@ -96,10 +96,10 @@ function sendMessage() {
     return;
   }
   DOM.input.value = '';
-  newmessageabouttobesent = usernameinthechat + ":   " + value,
+  newmessageabouttobesent = usernameinthechatvar + ":   " + value,
   drone.publish({
     room: 'observable-room',
-    message: usernameinthechat + ":   " + value,
+    message: usernameinthechatvar + ":   " + value,
   });
 }
 
