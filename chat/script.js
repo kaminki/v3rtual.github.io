@@ -17,7 +17,7 @@ drone.on('open', error => {
   console.log('Successfully connected to Scaledrone');
 
   const room = drone.subscribe('observable-room', {historyCount: 100});
-  room.on('history_message', message => console.log(message));
+  room.on('history_message', message => createMessageElement(message));
   room.on('open', error => {
     if (error) {
       return console.error(error);
@@ -106,7 +106,7 @@ function sendMessage() {
 
 
 function createMemberElement(member) {
-  const { name, color } = member.clientData;
+  const { color } = member.clientData;
   const el = document.createElement('div');
   //el.appendChild(document.createTextNode(name));
   el.className = 'member';
@@ -124,7 +124,6 @@ function updateMembersDOM() {
 
 function createMessageElement(text, member) {
   const el = document.createElement('div');
-  //el.appendChild(createMemberElement(member));
   el.appendChild(document.createTextNode(text));
   el.className = 'message';
   return el;
@@ -134,7 +133,6 @@ function addMessageToListDOM(text, member) {
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
   el.appendChild(createMessageElement(text));
-  //el.appendChild(createMessageElement(text, member));
   if (wasTop) {
     el.scrollTop = el.scrollHeight - el.clientHeight;
   }
