@@ -44,13 +44,6 @@ drone.on('open', error => {
     updateMembersDOM();
   });
 
-  room.on('data', (text, member) => {
-    if (member) {
-      addMessageToListDOM(text, member);
-    } else {
-      // Message is from server
-    }
-  });
 });
 
 drone.on('close', event => {
