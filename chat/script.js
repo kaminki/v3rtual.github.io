@@ -17,7 +17,15 @@ drone.on('open', error => {
   console.log('Successfully connected to Scaledrone');
 
   const room = drone.subscribe('observable-room', {historyCount: 100});
-  room.on('history_message', message => console.log(message));
+  room.on('history_message', ({data}) => {
+    console.log(data);
+    addMessageToListDOM(data);
+  });
+
+  room.on('data', data => {
+    console.log(data);
+    addMessageToListDOM(data);
+  });
   room.on('open', error => {
     if (error) {
       return console.error(error);
@@ -122,14 +130,14 @@ function updateMembersDOM() {
   );
 }
 
-function createMessageElement(text, member) {
+function createMessageElement(text) {
   const el = document.createElement('div');
   el.appendChild(document.createTextNode(text));
   el.className = 'message';
   return el;
 }
 
-function addMessageToListDOM(text, member) {
+function addMessageToListDOM(text) {
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
   el.appendChild(createMessageElement(text));
