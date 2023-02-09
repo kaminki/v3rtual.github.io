@@ -8,6 +8,7 @@ const drone = new ScaleDrone(CLIENT_ID, {
 });
 usernameinthechatvar = getRandomName();
 newmessageabouttobesent = ""
+
 let members = [];
 
 drone.on('open', error => {
@@ -17,16 +18,16 @@ drone.on('open', error => {
   console.log('Successfully connected to Scaledrone');
 
   const room = drone.subscribe('observable-room', {historyCount: 100});
-  room.on('history_message', ({data}) => {
-  console.log(data);
-  addMessageToListDOM(data);
-  });
-
   room.on('open', error => {
     if (error) {
       return console.error(error);
     }
     console.log('Successfully joined room');
+  });
+  
+  room.on('history_message', ({data}) => {
+    console.log(data);
+    addMessageToListDOM(data);
   });
 
   room.on('members', m => {
@@ -45,13 +46,6 @@ drone.on('open', error => {
     updateMembersDOM();
   });
 
-  room.on('data', (text, member) => {
-    if (member) {
-      addMessageToListDOM(text, member);
-    } else {
-      // Message is from server
-    }
-  });
 });
 
 drone.on('close', event => {
@@ -104,7 +98,7 @@ function sendMessage() {
   newmessageabouttobesent = usernameinthechatvar + ":   " + value,
   drone.publish({
     room: 'observable-room',
-    message: usernameinthechatvar + ":   " + value,
+    message: newmessageabouttobesent
   });
 }
 
