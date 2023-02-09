@@ -18,7 +18,8 @@ drone.on('open', error => {
 
   const room = drone.subscribe('observable-room', {historyCount: 100});
   room.on('history_message', ({data}) => {
-    addMessageToListDOM(data);
+  console.log(data);
+  addMessageToListDOM(data);
   });
 
   room.on('open', error => {
