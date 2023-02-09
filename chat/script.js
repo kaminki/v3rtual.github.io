@@ -6,8 +6,8 @@ const drone = new ScaleDrone(CLIENT_ID, {
     color: getRandomColor(),
   },
 });
+usernameinthechatvar = getRandomName();
 newmessageabouttobesent = ""
-
 let members = [];
 
 drone.on('open', error => {
@@ -17,16 +17,12 @@ drone.on('open', error => {
   console.log('Successfully connected to Scaledrone');
 
   const room = drone.subscribe('observable-room', {historyCount: 100});
+  room.on('history_message', message => console.log(message));
   room.on('open', error => {
     if (error) {
       return console.error(error);
     }
     console.log('Successfully joined room');
-  });
-  
-  room.on('history_message', ({data}) => {
-    console.log(data);
-    addMessageToListDOM(data);
   });
 
   room.on('members', m => {
@@ -45,6 +41,13 @@ drone.on('open', error => {
     updateMembersDOM();
   });
 
+  room.on('data', (text, member) => {
+    if (member) {
+      addMessageToListDOM(text, member);
+    } else {
+      // Message is from server
+    }
+  });
 });
 
 drone.on('close', event => {
@@ -94,10 +97,10 @@ function sendMessage() {
     return;
   }
   DOM.input.value = '';
-  newmessageabouttobesent = usernameinthechat + ":  " + value;
+  newmessageabouttobesent = usernameinthechatvar + ":   " + value,
   drone.publish({
     room: 'observable-room',
-    message: newmessageabouttobesent
+    message: usernameinthechatvar + ":   " + value,
   });
 }
 
@@ -119,14 +122,14 @@ function updateMembersDOM() {
   );
 }
 
-function createMessageElement(text) {
+function createMessageElement(text, member) {
   const el = document.createElement('div');
   el.appendChild(document.createTextNode(text));
   el.className = 'message';
   return el;
 }
 
-function addMessageToListDOM(text) {
+function addMessageToListDOM(text, member) {
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
   el.appendChild(createMessageElement(text));
