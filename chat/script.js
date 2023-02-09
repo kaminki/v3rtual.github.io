@@ -6,7 +6,6 @@ const drone = new ScaleDrone(CLIENT_ID, {
     color: getRandomColor(),
   },
 });
-usernameinthechatvar = getRandomName();
 newmessageabouttobesent = ""
 
 let members = [];
@@ -95,12 +94,11 @@ function sendMessage() {
     return;
   }
   DOM.input.value = '';
-  newmessageabouttobesent = usernameinthechatvar + ":   " + value,
+  newmessageabouttobesent = usernameinthechat + ":   " + value,
   drone.publish({
     room: 'observable-room',
     message: newmessageabouttobesent
   });
-  addMessageToListDOM(newmessageabouttobesent);
 }
 
 
