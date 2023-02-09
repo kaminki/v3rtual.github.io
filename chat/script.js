@@ -32,7 +32,7 @@ drone.on('open', error => {
   
   room.on('data', data => {
     console.log(data);
-    addFeedItemToTop(data);
+    addMessageToListDOM(data);
   });
 
   room.on('members', m => {
