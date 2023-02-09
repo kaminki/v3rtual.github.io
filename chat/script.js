@@ -100,6 +100,7 @@ function sendMessage() {
     room: 'observable-room',
     message: newmessageabouttobesent
   });
+  addMessageToListDOM(newmessageabouttobesent);
 }
 
 
