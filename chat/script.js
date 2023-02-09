@@ -132,16 +132,11 @@ function createMessageElement(text) {
   return el;
 }
 
-function addMessageToListDOM(text, member) {
+function addMessageToListDOM(text) {
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
-  let message = text;
-  if (member) {
-    message = member.clientData.name + ': ' + text;
-  }
-  el.appendChild(createMessageElement(message));
+  el.appendChild(createMessageElement(text));
   if (wasTop) {
     el.scrollTop = el.scrollHeight - el.clientHeight;
   }
 }
-
