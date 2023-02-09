@@ -94,7 +94,7 @@ function sendMessage() {
     return;
   }
   DOM.input.value = '';
-  newmessageabouttobesent = usernameinthechat + ":   " + value;
+  newmessageabouttobesent = usernameinthechat + ":  " + value;
   drone.publish({
     room: 'observable-room',
     message: newmessageabouttobesent
