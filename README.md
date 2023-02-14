@@ -1,2 +1,2 @@
-# los-3r.github.io
-github.io page to host games for los-3.weebly.com
+# v3rtual.github.io
+this site is a work in progress.
